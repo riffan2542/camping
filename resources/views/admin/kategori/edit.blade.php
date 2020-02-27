@@ -9,10 +9,6 @@
                     <form action="{{ route('kategori.update', $kategori->id) }}" method="post">
                         <input name="_method" type="hidden" value="PATCH">
                         {{ csrf_field() }}
-    <div class="form-group">
-        <label for="">Kode </label>
-        <input class="form-control" value="{{ $kategori->kategori_kode }}" type="text" name="kode">
-    </div>
      <div class="form-group">
         <label for="">Nama </label>
         <input class="form-control" value="{{ $kategori->kategori_nama }}" type="text" name="nama">

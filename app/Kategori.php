@@ -10,4 +10,8 @@ class Kategori extends Model
     {
         return $this->hasMany('App\Stokbarang', 'kategori_id');
     }
+    public function pemesanan()
+    {
+        return $this->hasMany('App\Pemesanan', 'kategori_id');
+    }
 }

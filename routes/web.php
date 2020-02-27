@@ -15,9 +15,7 @@
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', 'FrontendController@index')->name('/');
 Route::get('/about', function () {
     return view('frontend.about');
 });
@@ -32,6 +30,7 @@ Route::resource('/pengembalian', 'PengembalianController');
 Route::resource('/user', 'UserController');
 Route::resource('/stokbarang', 'StokbarangController');
 Route::resource('/transaksi', 'TransaksiController');
+Route::resource('/pemesanan', 'PemesananController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

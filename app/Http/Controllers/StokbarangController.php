@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Stokbarang;
-use App\User;
 use App\Kategori;
 use Alert;
+use Illuminate\Support\Facades\File;
 
 class StokbarangController extends Controller
 {
@@ -28,9 +28,8 @@ class StokbarangController extends Controller
      */
     public function create()
     {
-        $user = User::all();
         $kategori = Kategori::all();
-        return view('admin.stokbarang.create', compact('user', 'kategori'));
+        return view('admin.stokbarang.create', compact('kategori'));
         // $stokbarang = Stokbarang::all();
         // return view('admin.stokbarang.create', compact('stokbarang'));
     }
@@ -45,7 +44,6 @@ class StokbarangController extends Controller
     {
         $stokbarang = new Stokbarang;
         $stokbarang->kode = $request->kode;
-        $stokbarang->user_id = $request->user;
         $stokbarang->kategori_id = $request->kategori;
         $stokbarang->barang_nama= $request->nama;
         $stokbarang->barang_jumlah= $request->jumlah; 
@@ -80,7 +78,9 @@ class StokbarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $stokbarang = Stokbarang::findOrFail($id);
+        $kategori = Kategori::all();
+        return view('admin.stokbarang.edit', compact('stokbarang', 'kategori'));
     }
 
     /**
@@ -92,7 +92,38 @@ class StokbarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $stokbarang = Stokbarang::findOrFail($id);
+       $stokbarang->kode = $request->kode;
+       $stokbarang->kategori_id = $request->kategori;
+       $stokbarang->barang_nama= $request->nama;
+       $stokbarang->barang_jumlah= $request->jumlah; 
+
+        if ($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $path = public_path().
+                            '/assets/img/fotobarang/';
+            $filename ='_'
+                        .$file->getClientOriginalName();
+            $uploadSuccess = $file->move(
+                $path,
+                $filename
+            );
+            // hapus foto lama, jika ada
+            if ($stokbarang->foto){
+                $old_foto =$stokbarang->foto;
+                $filepath = public_path()
+                .'/assets/img/fotobarang'
+                .$stokbarang->foto;    
+                try {
+                    File::delete($filepath);
+                } catch (FileNotFoundException $e) {
+                    // File sudah dihapus/tidak ada
+                }
+            }
+           $stokbarang->foto = $filename;
+        }
+       $stokbarang->save();
+        return redirect()->route('stokbarang.index');
     }
 
     /**
@@ -103,6 +134,16 @@ class StokbarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $stokbarang = Stokbarang::findOrFail($id);
+        if ($stokbarang->foto) {
+            $old_foto =$stokbarang->foto;
+            $filepath = public_path() . '/assets/img/fotobarang/' .$stokbarang->foto;
+            try {
+                File::delete($filepath);
+            } catch (FileNotFoundException $e) { }
+        }
+
+       $stokbarang->delete();
+        return redirect()->route('stokbarang.index')->with('status', "Berhasil menghapus data stokbarang berjudul $stokbarang->barang_nama");
     }
 }

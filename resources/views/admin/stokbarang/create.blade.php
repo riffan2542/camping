@@ -15,16 +15,6 @@
               <input type="text" name="kode" id="" class="form-control" placeholder="Kode" aria-describedby="helpId">
             </div>
             <div class="form-group">
-              <label for="">User</label>
-              <select name="user" class="form-control">
-          @foreach($user as $data)
-              <option value="{{ $data->id }}">
-                  {{ $data->name }}
-              </option>
-          @endforeach
-              </select>
-            </div>
-            <div class="form-group">
               <label for="">Kategori</label>
               <select name="kategori" class="form-control">
           @foreach($kategori as $data)
@@ -43,7 +33,7 @@
                 <input type="file" class="form-control" name="foto">
             </div>
             <div class="form-group">
-              <label for="">Jumlah Barang</label>
+              <label for="">Stok Barang</label>
               <input type="number" name="jumlah" id="" class="form-control" placeholder="Jumlah Barang" aria-describedby="helpId">
             </div>
                 <div class="form-group">

@@ -10,10 +10,6 @@
                 <div class="card-body">
                 <form action="{{ route('kategori.store') }}" method="post">
                     @csrf
-                    <div class="form-group">
-                    <label for="">Kode</label>
-                    <input class="form-control" type="text" name="kode">
-                </div>
                 <div class="form-group">
                     <label for="">Nama</label>
                     <input class="form-control" type="text" name="nama">

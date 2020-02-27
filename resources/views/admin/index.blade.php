@@ -26,7 +26,10 @@
   <link rel="stylesheet" href="/admin/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+  
+  </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -163,15 +166,21 @@
                 </a>
               </li> 
               <li class="nav-item">
-                <a href="pengembalian" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pengemblian</p>
-                </a>
-              </li> 
-              <li class="nav-item">
                 <a href="stokbarang" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Stok Barang</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pemesanan" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pemesanan</p>
+                </a>
+              </li>  
+              <li class="nav-item">
+                <a href="pengembalian" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pengembalian</p>
                 </a>
               </li> 
               <li class="nav-item">
@@ -273,5 +282,13 @@
 <script src="admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="admin/dist/js/demo.js"></script>
+<!-- select 2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('.select2').select2();
+});
+</script>
 </body>
 </html>

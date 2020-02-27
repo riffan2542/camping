@@ -20,11 +20,10 @@
                         <tr>
                             <th>No</th>
                             <th>kode</th>
-                            <th>User</th>
                             <th>Kategori</th>
                             <th>Nama Barang</th>
                             <th>Foto Barang</th>
-                            <th>Jumlah Barang</th>
+                            <th>Stok Barang</th>
                             <th colspan="3" style="text-align:center;">Action</th>
                         </tr>
                         @php $no = 1; @endphp   
@@ -32,10 +31,9 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->kode }}</td>
-                                <td>{{ $data->user->name }}</td>
                                 <td>{{ $data->kategori->kategori_nama }}</td>
                                 <td>{{ $data->barang_nama }}</td>
-                                <td><img src="{{ asset('assets/img/fotobarang/'.$data->foto) }}" alt="" height="300px" width="300px"></td>
+                                <td><img src="{{ asset('assets/img/fotobarang/'.$data->foto) }}" alt="" height="100px" width="100px"></td>
                                 <td>{{ $data->barang_jumlah }}</td>
                                 <td><a href="{{ route('stokbarang.edit', $data->id) }}" class="btn btn sm btn-danger">Edit</a></td>
                                 <td><a href="{{ route('stokbarang.show', $data->id) }}" class="btn btn sm btn-warning">Detail data</a></td>

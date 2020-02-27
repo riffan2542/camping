@@ -21,7 +21,6 @@
                     <table class="table"3 >
                         <tr>
                             <th>No</th>
-                            <th>Kode</th>
                             <th>Nama</th>
                             <th colspan="3" style="text-align:center;">Action</th>
                         </tr>
@@ -29,7 +28,6 @@
                         @foreach ($kategori as $data)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $data->kategori_kode }}</td>
                                 <td>{{ $data->kategori_nama}}</td>
                                 <td><a href="{{ route('kategori.edit', $data->id) }}" class="btn btn sm btn-success">Edit</a></td>
                                 <td>

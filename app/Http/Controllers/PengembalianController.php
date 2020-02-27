@@ -98,6 +98,6 @@ class PengembalianController extends Controller
     {
         $pengembalian =Pengembalian::destroy($id);
 
-        return redirect()->route('pengembalian.index');
+        return redirect()->route('pengembalian.index')->with('status', "Berhasil menghapus data pengembalian berjudul $pengembalian->kondisi_barang");
     }
 }

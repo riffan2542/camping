@@ -16,8 +16,6 @@ class CreateStokBarangsTable extends Migration
         Schema::create('stokbarangs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('kode');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('kategori_id');
             $table->foreign('kategori_id')->references('id')->on('kategoris')->onDelete('cascade');
             $table->string('foto');

@@ -40,7 +40,6 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $kategori = new Kategori;
-        $kategori->kategori_kode = $request->kode;
         $kategori->kategori_nama = $request->nama;
         $kategori->save();
 
@@ -80,7 +79,6 @@ class KategoriController extends Controller
     public function update(Request $request, $id)
     {
         $kategori = Kategori::findOrFail($id);
-        $kategori->kategori_kode = $request->kode;
         $kategori->kategori_nama = $request->nama;
         $kategori->save();
        
@@ -97,6 +95,6 @@ class KategoriController extends Controller
     {
         $kategori =Kategori::destroy($id);
 
-        return redirect()->route('kategori.index');
+        return redirect()->route('kategori.index')->with('status', "Berhasil menghapus data transaksi berjudul $kategori->kategori_nama");
     }
 }

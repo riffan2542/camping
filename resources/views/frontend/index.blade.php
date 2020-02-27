@@ -346,124 +346,35 @@
                                     <!-- PopularCars Tab Content Start -->
                                     <div class="row popular-car-gird">
                                         <!-- Single Popular Car Start -->
+                                        @foreach ($stokbarang as $data)
                                         <div class="col-lg-4 col-md-6 con suv mpv">
-                                            <div class="single-popular-car">
+                                            <div class="single-popular-car"> 
                                                 <div class="p-car-thumbnails">
                                                     <a class="car-hover" href="frontend/assets/img/portable.jpg">
-                                                      <img style="height:300px;width:400px;" src="frontend/assets/img/portable.jpg" alt="JSOFT">
+                                                    <td><img src="{{ asset('assets/img/fotobarang/'.$data->foto) }}" alt="" height="500px" width="500px"></td>
                                                    </a>
                                                 </div>
 
                                                 <div class="p-car-content">
                                                     <h3>
-                                                        <a href="#">Alat Masak Portable</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
+                                                        <a href="">Alat Masak Portable</a>
+                                                        <!-- <span class="price"><i class="fa fa-tag"></i> $55/day</span> -->
                                                     </h3>
+                                                    <p class="card-text">
+                                                        <i class="fas fa-shopping-cart"></i>{{ $data->barang_jumlah }}
+                                                        </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Single Popular Car End -->
-
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 hat sedan">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="frontend/assets/img/lampu.jpg">
-                                                      <img style="height:300px;" src="frontend/assets/img/lampu.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Lampu Senter</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
-
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 suv con mpv">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="frontend/assets/img/matras.jpg">
-                                                      <img style="height:300px;" src="frontend/assets/img/matras.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Matras Camping</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
-
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 con hat">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="frontend/assets/img/tenda/tenda6.jpg">
-                                                      <img src="frontend/assets/img/tenda/tenda6.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Tenda Camping</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
-
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 con sedan mpv">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="frontend/assets/img/hammock.jpg">
-                                                      <img src="frontend/assets/img/hammock.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Hammock</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
-
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 hat suv mpv">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="frontend/assets/img/sleepeng.jpg">
-                                                      <img src="frontend/assets/img/sleepeng.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Sleeping bag</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
+                                        @endforeach
                                     </div>
+                                    
                                     <!-- PopularCars Tab Content End -->
                                 </div>
                                 <!-- Popular Cars Content Wrapper End -->
                             </div>
                             <!-- Popular Cars Tab End -->
+                            
 
                             <!-- Newest Cars Tab Start -->
                             <div class="tab-pane fade" id="newest_cars" role="tabpanel" aria-labelledby="profile-tab">
@@ -572,7 +483,7 @@
                             <!-- Office Map Tab -->
                             <div class="tab-pane fade" id="office_map" role="tabpanel" aria-labelledby="contact-tab">
                                 <div class="map-area">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.6538067244583!2d90.37092511435942!3d23.79533919297639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0cce3251ab1%3A0x7a2aa979862a9643!2sJSoft!5e0!3m2!1sen!2sbd!4v1516771096779"></iframe>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.3591290652835!2d107.59006621431756!3d-6.96689177014985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e8deccecb6f1%3A0x658cc60fbe5017b9!2sSMK%20Assalaam%20Bandung!5e0!3m2!1sid!2sid!4v1582724694183!5m2!1sid!2sid" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                                 </div>
                             </div>
                             <!-- Office Map Tab -->
