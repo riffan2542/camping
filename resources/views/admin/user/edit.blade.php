@@ -10,7 +10,7 @@
                         <input name="_method" type="hidden" value="PATCH">
                         {{ csrf_field() }}
     <div class="form-group">
-        <label for="">Nama</label>
+        <label for="">Name</label>
         <input class="form-control" value="{{ $user->name }}" type="text" name="nama">
     </div>
      <div class="form-group">
@@ -27,7 +27,7 @@
         </button>
     </div>
     <div class="form-group">
-        <a href="{{ url('user.index') }}" class="btn btn-outline-info">Kembali</a>
+        <a href="{{ url('user.index') }}" class="btn btn-outline-info">Back</a>
     </div>
         </form>
             </div>

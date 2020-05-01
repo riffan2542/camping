@@ -43,8 +43,9 @@ class PengembalianController extends Controller
         $pengembalian->detail_denda = $request->detail_denda;
         $pengembalian->kondisi_barang = $request->kondisi_barang;
         $pengembalian->save();
+        toast('Success Toast', 'success');
 
-        return redirect()->route('pengembalian.index')->with('status', "Berhasil menyimpan data pengembalian $pengembalian->kondisi_barang");
+        return redirect()->route('pengembalian.index');
     }
 
     /**
@@ -84,8 +85,9 @@ class PengembalianController extends Controller
         $pengembalian->detail_denda = $request->detail_denda;
         $pengembalian->kondisi_barang = $request->kondisi_barang;
         $pengembalian->save();
+        toast('Success Toast', 'success');
        
-        return redirect()->route('pengembalian.index')->with('status', "Berhasil mengubah kategori $pengembalian->kondisi_barang");
+        return redirect()->route('pengembalian.index');
     }
 
     /**
@@ -96,8 +98,8 @@ class PengembalianController extends Controller
      */
     public function destroy($id)
     {
-        $pengembalian =Pengembalian::destroy($id);
-
+        $pengembalian = Pengembalian::findOrFail($id);
+        $pengembalian->delete();
         return redirect()->route('pengembalian.index')->with('status', "Berhasil menghapus data pengembalian berjudul $pengembalian->kondisi_barang");
     }
 }

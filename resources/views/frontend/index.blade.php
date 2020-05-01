@@ -8,7 +8,7 @@
     <!--=== Favicon ===-->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   
-    <title>Cardoor - Car Rental HTML Template</title>
+    <title>Outdoor Equipment Rental</title>
 
     <!--=== Bootstrap CSS ===-->
     <link href="frontend/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -142,7 +142,7 @@
                         <div class="display-table">
                             <div class="display-table-cell">
                                 <div class="slider-right-text" style="margin-top:280px;">
-                                    <h1>BOOK CAMPING TOOLS TODAY!</h1>
+                                    <h1>TIME TO TRAVEL!</h1>
                                 </div>
                             </div>
                         </div>
@@ -351,7 +351,7 @@
                                             <div class="single-popular-car"> 
                                                 <div class="p-car-thumbnails">
                                                     <a class="car-hover" href="frontend/assets/img/portable.jpg">
-                                                    <td><img src="{{ asset('assets/img/fotobarang/'.$data->foto) }}" alt="" height="500px" width="500px"></td>
+                                                    <td><img src="{{ asset('assets/img/fotobarang/'.$data->foto) }}" alt="" style="height:300px" ></td>
                                                    </a>
                                                 </div>
 

@@ -47,6 +47,7 @@ class StokbarangController extends Controller
         $stokbarang->kategori_id = $request->kategori;
         $stokbarang->barang_nama= $request->nama;
         $stokbarang->barang_jumlah= $request->jumlah; 
+        $stokbarang->harga_barang= $request->harga; 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $destinationPath = public_path() . '/assets/img/fotobarang/';
@@ -55,8 +56,9 @@ class StokbarangController extends Controller
             $stokbarang->foto = $filename;
         }
         $stokbarang->save();
+        toast('Success Toast', 'success');
 
-        return redirect()->route('stokbarang.index')->with('status', "Berhasil menyimpan stokbarang $stokbarang->barang_nama");
+        return redirect()->route('stokbarang.index');
     }
 
     /**
@@ -97,6 +99,7 @@ class StokbarangController extends Controller
        $stokbarang->kategori_id = $request->kategori;
        $stokbarang->barang_nama= $request->nama;
        $stokbarang->barang_jumlah= $request->jumlah; 
+       $stokbarang->harga_barang= $request->harga; 
 
         if ($request->hasFile('foto')){
             $file = $request->file('foto');
@@ -123,6 +126,7 @@ class StokbarangController extends Controller
            $stokbarang->foto = $filename;
         }
        $stokbarang->save();
+       toast('Success Toast', 'success');
         return redirect()->route('stokbarang.index');
     }
 

@@ -1,6 +1,13 @@
 @extends('admin.index')
 
 @section('content')
+
+<style>
+#select2{
+  font-color: black;
+}
+</style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -15,9 +22,13 @@
               <input type="text" name="kode" id="" class="form-control" placeholder="Kode" aria-describedby="helpId">
             </div>
             <div class="form-group">
-              <label for="">Nama Barang </label>
-              <select name="nama" id="select2" class="form-control" placeholder="Nama Barang" aria-describedby="helpId"><option value=""></option></select>
-            </div>
+              <label for="">Nama Barang</label>
+              <select name="stokbarang[]" class="form-control" required id="select2" style="width:100%;" multiple>
+                @foreach ($stokbarang as $data)
+              <option value="{{ $data->id }}">{{ $data->barang_nama }}</option>
+                @endforeach
+              </select>
+            </div>  
             <div class="form-group">
               <label for="">Kategori</label>
               <select name="kategori" class="form-control">
@@ -27,10 +38,6 @@
               </option>
           @endforeach
               </select>
-            </div>
-            <div class="form-group">
-                <label for="">Foto</label>
-                <input type="file" class="form-control" name="foto">
             </div>
             <div class="form-group">
               <label for="">Jumlah Barang</label>

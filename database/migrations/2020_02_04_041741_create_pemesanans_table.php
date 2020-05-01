@@ -16,12 +16,8 @@ class CreatePemesanansTable extends Migration
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('kode');
-            $table->string('nama_barang');
             $table->unsignedBigInteger('kategori_id');
             $table->foreign('kategori_id')->references('id')->on('kategoris')->onDelete('cascade');
-            $table->unsignedBigInteger('stokbarang_id');
-            $table->foreign('stokbarang_id')->references('id')->on('stokbarangs')->onDelete('cascade');
-            $table->string('foto');
             $table->integer('jumlah_barang');
             $table->timestamps();
         });

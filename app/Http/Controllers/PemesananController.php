@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pemesanan;
 use App\Kategori;
+use App\Stokbarang;
 use Alert;
 use Illuminate\Support\Facades\File;
 
@@ -29,7 +30,8 @@ class PemesananController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
-        return view('admin.pemesanan.create', compact('kategori'));
+        $stokbarang = Stokbarang::all();
+        return view('admin.pemesanan.create', compact('kategori', 'stokbarang'));
     }
 
     /**
@@ -42,19 +44,12 @@ class PemesananController extends Controller
     {
         $pemesanan = new Pemesanan;
         $pemesanan->kode = $request->kode;
-        $pemesanan->nama_barang= $request->nama;
         $pemesanan->kategori_id = $request->kategori;
         $pemesanan->jumlah_barang= $request->jumlah; 
-        if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
-            $destinationPath = public_path() . '/assets/img/fotobarang/';
-            $filename = '_' . $file->getClientOriginalName();
-            $uploadSuccess = $file->move($destinationPath, $filename);
-            $pemesanan->foto = $filename;
-        }
         $pemesanan->save();
+        $pemesanan->stokbarang()->attach($request->stokbarang);
 
-        return redirect()->route('pemesanan.index')->with('status', "Berhasil menyimpan Pemesanan $pemesanan->nama_barang");
+        return redirect()->route('pemesanan.index')->with('status', "Berhasil menyimpan Pemesanan $pemesanan->jumlah_barang");
     }
 
     /**
@@ -76,7 +71,11 @@ class PemesananController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pemesanan = Pemesanan::findOrFail($id);
+        $kategori = Kategori::all();
+        $stokbarang = Stokbarang::all();
+        $selected = $pemesanan->stokbarang->pluck('id')->toArray();
+        return view('admin.pemesanan.edit', compact('pemesanan', 'kategori', 'selected', 'stokbarang'));
     }
 
     /**
@@ -88,7 +87,13 @@ class PemesananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pemesanan = Pemesanan::findOrFail($id);
+        $pemesanan->kode = $request->kode;
+        $pemesanan->kategori_id = $request->kategori;
+        $pemesanan->jumlah_barang= $request->jumlah; 
+        $pemesanan->save();
+        $pemesanan->stokbarang()->sync($request->stokbarang);
+         return redirect()->route('pemesanan.index')->with('status', "Berhasil mengedit pemesanan $pemesanan->jumlah_barang");
     }
 
     /**
@@ -99,6 +104,8 @@ class PemesananController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pemesanan = Pemesanan::findOrFail($id);
+        $pemesanan->delete();
+        return redirect()->route('pemesanan.index')->with('status', "Berhasil menghapus data pemesanan berjudul $pemesanan->jumlah_barang");
     }
 }

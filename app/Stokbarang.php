@@ -12,8 +12,12 @@ class Stokbarang extends Model
     {
         return $this->belongsTo('App\Kategori', 'kategori_id');
     }
+    public function pemesanan()
+    {
+        return $this->belongsToMany('App\Pemesanan', 'pemesanan_stokbarangs', 'stokbarang_id', 'pemesanan_id');
+    }
     public function transaksi()
     {
-        return $this->hasMany('App\Transaksi', 'stokbarang_id');
+        return $this->belongsToMany('App\Transaksi', 'transaksi_stokbarangs', 'stokbarang_id', 'transaksi_id');
     }
 }

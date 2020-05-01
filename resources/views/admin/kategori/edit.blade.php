@@ -1,25 +1,27 @@
-@extends('admin.index')
+@extends('admin.main')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
+        <div class="card-header bg-dark py-3">
+        <h5 class="m-0 font-weight-bold text-white">{{ __('Change Category Data')}}
+        </h5>
+        </form>
+      </div>
             <div class="card">
-                <div class="card-header">Mengubah Data Kategori</div>
                 <div class="card-body">
                     <form action="{{ route('kategori.update', $kategori->id) }}" method="post">
                         <input name="_method" type="hidden" value="PATCH">
                         {{ csrf_field() }}
      <div class="form-group">
-        <label for="">Nama </label>
-        <input class="form-control" value="{{ $kategori->kategori_nama }}" type="text" name="nama">
+        <label for="">Name</label>
+        <input class="form-control" value="{{ $kategori->kategori_nama }}" type="text" name="nama" required>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-outline-info">
-        Simpan Data
+        <button type="submit" class="btn btn-dark">
+        Save Data
         </button>
-    </div>
-    <div class="form-group">
-        <a href="{{ url('kategori.index') }}" class="btn btn-outline-info">Kembali</a>
+        <a href="{{ route('kategori.index') }}" class="btn btn-dark">Back</a>
     </div>
         </form>
             </div>

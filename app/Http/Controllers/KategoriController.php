@@ -42,8 +42,9 @@ class KategoriController extends Controller
         $kategori = new Kategori;
         $kategori->kategori_nama = $request->nama;
         $kategori->save();
+        toast('Success Toast', 'success');
 
-        return redirect()->route('kategori.index')->with('status', "Berhasil menyimpan kategori $kategori->kategori_nama");
+        return redirect()->route('kategori.index');
     }
 
     /**
@@ -81,7 +82,8 @@ class KategoriController extends Controller
         $kategori = Kategori::findOrFail($id);
         $kategori->kategori_nama = $request->nama;
         $kategori->save();
-       
+        toast('Success Toast', 'success');
+
         return redirect()->route('kategori.index')->with('status', "Berhasil mengubah kategori $kategori->kategori_nama");
     }
 
@@ -93,8 +95,8 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $kategori =Kategori::destroy($id);
-
-        return redirect()->route('kategori.index')->with('status', "Berhasil menghapus data transaksi berjudul $kategori->kategori_nama");
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+        return redirect()->route('kategori.index')->with('status', "Berhasil menghapus data kategori berjudul $kategori->kategori_nama");
     }
 }

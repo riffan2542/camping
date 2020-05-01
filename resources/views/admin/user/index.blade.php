@@ -1,9 +1,9 @@
-@extends('admin.index')
+@extends('admin.main')
 @section('content')
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Data user</div>
                 
@@ -21,7 +21,7 @@
                     <table class="table"3 >
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th colspan="3" style="text-align:center;">Action</th>
                         </tr>
@@ -36,7 +36,7 @@
                                     <form action="{{ route('user.destroy', $data->id) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button class="btn btn sm btn-danger" type="submit">Hapus Data</button>
+                                        <button class="btn btn sm btn-danger" type="submit">Delete Data</button>
                                     </form>
                                 </td>
                             </tr>

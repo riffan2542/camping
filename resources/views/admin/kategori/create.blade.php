@@ -5,17 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Tambah data kategori</div>
+                <div class="card-header">Add Category Data</div>
 
                 <div class="card-body">
                 <form action="{{ route('kategori.store') }}" method="post">
                     @csrf
                 <div class="form-group">
-                    <label for="">Nama</label>
-                    <input class="form-control" type="text" name="nama">
+                    <label for="">Name</label>
+                    <input class="form-control" type="text" name="name">
                 </div>
                 <div class="form-group">
-                   <button type="submit" class="btn btn-outline-info">Simpan Data</button>
+                   <button type="submit" class="btn btn-outline-info">Save Data</button>
                     <a href="{{ route('kategori.index') }}" class="btn btn-outline-info">Back</a>
                 </div>
                 </form>

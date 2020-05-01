@@ -14,4 +14,8 @@ class Pemesanan extends Model
     {
         return $this->belongsTo('App\Kategori', 'kategori_id');
     }
+    public function stokbarang()
+    {
+    return $this->belongsToMany('App\Stokbarang', 'pemesanan_stokbarangs', 'pemesanan_id', 'stokbarang_id');
+    }
 }

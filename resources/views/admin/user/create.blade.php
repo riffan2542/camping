@@ -11,7 +11,7 @@
                 <form action="{{ route('user.store') }}" method="post">
                     @csrf
                     <div class="form-group">
-                    <label for="">Nama</label>
+                    <label for="">Name</label>
                     <input class="form-control" type="text" name="nama">
                 </div>
                 <div class="form-group">

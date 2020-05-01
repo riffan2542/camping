@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Transaksi;
-use App\Stokbarang;
+use App\Pemesanan;
 use App\Pengembalian;
+use App\Stokbarang;
+use PDF;
 use Alert;
 
 class TransaksiController extends Controller
@@ -15,10 +17,20 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $transaksi = Transaksi::all();
-        return view('admin.transaksi.index', compact('transaksi'));
+        $pengembalian = Pengembalian::all();
+        return view('admin.transaksi.index', compact('transaksi', 'pengembalian'));
+    }
+
+    public function cetak_pdf($id)
+    {
+        $transaksi = Transaksi::findOrFail($id);
+        $pengembalian = Pengembalian::all();
+ 
+    	$pdf = PDF::loadview('admin.transaksi.pdf',['transaksi'=>$transaksi,'pengembalian'=>$pengembalian]);
+    	return $pdf->stream('laporan-transaksi-pdf');
     }
 
     /**
@@ -43,13 +55,14 @@ class TransaksiController extends Controller
     {
         $transaksi = new Transaksi;
         $transaksi->nama_admin = $request->nama;
-        $transaksi->nama_barang = $request->barang;
         $transaksi->total_harga= $request->harga;
-        $transaksi->stokbarang_id= $request->stokbarang;
+        $transaksi->jumlah_barang= $request->jumlah;
         $transaksi->pengembalian_id= $request->pengembalian; 
         $transaksi->save();
+        $transaksi->stokbarang()->attach($request->stokbarang);
+        toast('Success Toast', 'success');
 
-        return redirect()->route('transaksi.index')->with('status', "Berhasil menyimpan transaksi $transaksi->nama_admin");
+        return redirect()->route('transaksi.index');
     }
 
     /**
@@ -60,7 +73,10 @@ class TransaksiController extends Controller
      */
     public function show($id)
     {
-        //
+        $transaksi = Transaksi::findOrFail($id);
+        $pengembalian = Pengembalian::all();
+
+        return view('admin.transaksi.show', compact('transaksi', 'pengembalian'));
     }
 
     /**
@@ -73,8 +89,9 @@ class TransaksiController extends Controller
     {
         $transaksi = transaksi::findOrFail($id);
         $stokbarang = Stokbarang::all();
+        $selected = $transaksi->stokbarang->pluck('id')->toArray();
         $pengembalian = Pengembalian::all();
-        return view('admin.transaksi.edit', compact('transaksi', 'stokbarang', 'pengembalian'));
+        return view('admin.transaksi.edit', compact('transaksi', 'stokbarang', 'selected', 'pengembalian'));
     }
 
     /**
@@ -88,12 +105,14 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::findOrFail($id);
         $transaksi->nama_admin = $request->nama;
-        $transaksi->nama_barang = $request->barang;
-        $transaksi->stokbarang_id = $request->stokbarang;
+        $transaksi->jumlah_barang = $request->jumlah;
         $transaksi->total_harga= $request->harga;
         $transaksi->pengembalian_id= $request->pengembalian; 
         $transaksi->save();
-         return redirect()->route('transaksi.index')->with('status', "Berhasil menyimpan transaksi $transaksi->nama_admin");
+        $transaksi->stokbarang()->sync($request->stokbarang);
+        toast('Success Toast', 'success');
+
+         return redirect()->route('transaksi.index');
     }
 
     /**
